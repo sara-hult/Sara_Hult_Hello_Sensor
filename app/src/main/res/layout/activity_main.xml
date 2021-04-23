@@ -7,16 +7,6 @@
     tools:context=".MainActivity"
     android:background="@color/white">
 
-    <Button
-        android:id="@+id/activity2Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="500sp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="cursive"
-        android:text="  SpeedYou  " />
 
     <TextView
         android:id="@+id/textView"
@@ -34,6 +24,18 @@
         android:textColor="@color/black"/>
 
     <Button
+        android:id="@+id/activity2Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="500sp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="cursive"
+        android:text="  SpeedYou  "
+        android:textAllCaps="false"
+        android:textSize="20dp"/>
+    <Button
         android:id="@+id/activity3Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,6 +44,8 @@
         android:layout_marginTop="450sp"
         android:layout_marginBottom="10dp"
         android:fontFamily="cursive"
-        android:text="CompassYou" />
+        android:text="CompassYou"
+        android:textAllCaps="false"
+        android:textSize="20dp"/>
 
 </RelativeLayout>

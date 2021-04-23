@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,12 +28,15 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
     private boolean haveSensor = false, haveSensor2 = false;
     private boolean lastAccelerometerSet = false;
     private boolean lastMagnetometerSet = false;
+    private MediaPlayer cowSound;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_3);
+
+        cowSound = MediaPlayer.create(this, R.raw.cow);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         compassImage = (ImageView) findViewById(R.id.compass_3);
@@ -72,6 +76,7 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
             where = "Nw";
         }if(max <= 280 && max > 260) {
             where = "W";
+            cowSound.start();
         }if(max <= 260 && max > 190) {
             where = "Sw";
         }if(max <= 190 && max > 170) {

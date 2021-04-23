@@ -1,6 +1,7 @@
 package com.example.sara_hult_hello_sensor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.math.MathUtils;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -33,9 +34,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        xValue.setText("xValue: " + event.values[0]);
-        yValue.setText("yValue: " + event.values[1]);
-        zValue.setText("zValue: " + event.values[2]);
+
+        xValue.setText("xValue: " + Math.round((double) event.values[0]));
+        yValue.setText("yValue: " + Math.round( (double)event.values[1]));
+        zValue.setText("zValue: " + Math.round( (double)event.values[2]));
 
     }
 
