@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sara_Hult_Hello_Sensor">
+        <activity android:name=".Activity3"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activity2" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
