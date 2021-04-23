@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.math.MathUtils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.widget.TextView;
 
 public class Activity2 extends AppCompatActivity implements SensorEventListener {
@@ -17,6 +19,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
     private float changedValue;
 
     private TextView xValue, yValue, zValue;
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,8 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         xValue = findViewById(R.id.xValue);
         yValue = findViewById(R.id.yValue);
         zValue = findViewById(R.id.zValue);
+
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE); //Låter oss komma åt mobilens olika sensorer
@@ -39,6 +44,26 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         yValue.setText("yValue: " + Math.round( (double)event.values[1]));
         zValue.setText("zValue: " + Math.round( (double)event.values[2]));
 
+        if (Math.round((double) event.values[0]) > 7 || Math.round((double) event.values[0]) < -7) {
+            tipped(xValue);
+        } else if(Math.round((double) event.values[1]) > 7 || Math.round((double) event.values[1]) < -7) {
+            tipped(yValue);
+        } else if (Math.round((double) event.values[2]) > 13 || Math.round((double) event.values[2]) < -7 ) {
+            tipped(zValue);
+        } else {
+            clear(xValue);
+            clear(yValue);
+            clear(zValue);
+        }
+    }
+
+    private void tipped(TextView view) {
+        vibrator.vibrate(1000);
+        view.setTextColor(Color.RED);
+    }
+
+    private void clear(TextView view) {
+        view.setTextColor(Color.BLACK);
     }
 
     @Override

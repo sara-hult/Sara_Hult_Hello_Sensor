@@ -9,10 +9,17 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.TimerTask;
 
 
 public class Activity3 extends AppCompatActivity implements SensorEventListener {
@@ -28,15 +35,55 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
     private boolean haveSensor = false, haveSensor2 = false;
     private boolean lastAccelerometerSet = false;
     private boolean lastMagnetometerSet = false;
-    private MediaPlayer cowSound;
 
+    private MediaPlayer cowPlayer, seaPlayer, birdPlayer;
+    static final float ALPHA = 0.25f;
+
+    /*
+    private SoundPool soundPool;
+    private int cowSound, sheepSound, birdSound;
+    private boolean loaded; */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_3);
 
-        cowSound = MediaPlayer.create(this, R.raw.cow);
+        cowPlayer = MediaPlayer.create(this, R.raw.cow);
+        seaPlayer = MediaPlayer.create(this, R.raw.seatrimmed);
+        birdPlayer = MediaPlayer.create(this, R.raw.birdstrimmed);
+
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(3)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+            soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                           int status) {
+                    loaded = true;
+                }
+            });
+        } else {
+            soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+            soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                    loaded = true;
+                }
+            });
+        }
+
+        cowSound = soundPool.load(this, R.raw.cow, 1);
+        sheepSound = soundPool.load(this, R.raw.sheep, 1);
+        birdSound = soundPool.load(this, R.raw.birds, 1);
+        */
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         compassImage = (ImageView) findViewById(R.id.compass_3);
@@ -76,21 +123,41 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
             where = "Nw";
         }if(max <= 280 && max > 260) {
             where = "W";
-            cowSound.start();
+            startSound(birdPlayer);
+            //soundPool.play(cowSound, 1, 1, 0, 0, 1);
         }if(max <= 260 && max > 190) {
             where = "Sw";
         }if(max <= 190 && max > 170) {
             where = "S";
+            seaPlayer.start();
+            //soundPool.play(sheepSound, 1, 1, 0, 0, 1);
         }if(max <= 170 && max > 100) {
             where = "SE";
         }if(max <= 100 && max > 80) {
             where = "E";
+            //startSound(sheepPlayer);
+            //soundPool.play(birdSound, 1, 1, 0, 0, 1);
         }if(max <= 80 && max > 10) {
             where = "NE";
         }
 
         textView.setText(max + " " + where);
 
+    }
+
+    private void startSound(MediaPlayer player) {
+        if (!player.isPlaying()) {
+            player.start();
+        } else {
+            player.pause();
+        }
+    }
+    protected float[] lowPass( float[] input, float[] output ) {
+        if ( output == null ) return input;
+        for ( int i=0; i<input.length; i++ ) {
+            output[i] = output[i] + ALPHA * (input[i] - output[i]);
+        }
+        return output;
     }
 
     @Override
@@ -108,8 +175,6 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
 
                 haveSensor = sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
                 haveSensor2 = sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_UI);
-
-
             }
         } else {
             rotationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
@@ -151,5 +216,12 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
     protected void onResume() {
         super.onResume();
         start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //soundPool.release();
+        //soundPool = null;
     }
 }

@@ -25,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
         });
         activity3Button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openActivity3();
+            public void onClick(View v) { openActivity3();
             }
         });
     }
@@ -34,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
     public void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
+        finish();
     }
 
     public void openActivity3() {
         Intent intent = new Intent(this, Activity3.class);
         startActivity(intent);
+        finish();
     }
 
 }
