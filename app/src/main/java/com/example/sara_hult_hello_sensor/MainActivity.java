@@ -2,6 +2,8 @@ package com.example.sara_hult_hello_sensor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.assist.AssistStructure;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setTitle("SeaYou");
 
         activity2Button = findViewById(R.id.activity2Button);
         activity3Button = findViewById(R.id.activity3Button);
@@ -33,13 +37,11 @@ public class MainActivity extends AppCompatActivity {
     public void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
-        finish();
     }
 
     public void openActivity3() {
         Intent intent = new Intent(this, Activity3.class);
         startActivity(intent);
-        finish();
     }
 
 }

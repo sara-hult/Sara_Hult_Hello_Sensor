@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity3"
-    android:background="@color/white" >
+    android:background="@color/white"
+    tools:context=".Activity3">
 
     <TextView
         android:id="@+id/text3"
@@ -18,9 +18,9 @@
         android:fontFamily="cursive"
         android:text="345"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="35sp"
-        android:typeface="sans"
-        android:textColor="@color/black"/>
+        android:typeface="sans" />
 
     <ImageView
         android:id="@+id/compass_3"
@@ -41,9 +41,19 @@
         android:fontFamily="cursive"
         android:text="CompassYou"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="35sp"
-        android:typeface="sans"
-        android:textColor="@color/black"/>
+        android:typeface="sans" />
+
+    <ImageButton
+        android:id="@+id/backButton3"
+        android:layout_width="89dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="5sp"
+        android:background="#FFFFFF"
+        android:rotationX="11"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/wheel" />
 
 
 </RelativeLayout>

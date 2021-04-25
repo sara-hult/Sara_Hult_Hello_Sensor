@@ -6,46 +6,60 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="30sp"
     tools:context=".Activity2">
+
+    <ImageButton
+        android:id="@+id/backButton2"
+        android:layout_width="89dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="5sp"
+        android:background="#FFFFFF"
+        android:rotationX="11"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/wheel" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="60sp"
         android:layout_marginBottom="10dp"
         android:fontFamily="cursive"
+        android:text="BalanceYou"
         android:textAlignment="center"
-        android:typeface="sans"
-        android:text="SpeedYou"
+        android:textColor="@color/black"
         android:textSize="45dp"
-        android:textColor="@color/black"/>
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/xValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100sp"
+        android:layout_marginTop="150sp"
         android:fontFamily="cursive"
-        android:textColor="@color/black"/>
+        android:paddingLeft="20dp"
+        android:textColor="#282D47"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/yValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150sp"
+        android:layout_marginTop="200sp"
         android:fontFamily="cursive"
-        android:textColor="@color/black"/>
+        android:paddingLeft="20dp"
+        android:textColor="#282D47"
+        android:textSize="25dp" />
 
     <TextView
         android:id="@+id/zValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200sp"
+        android:layout_marginTop="250sp"
         android:fontFamily="cursive"
-        android:textColor="@color/black"/>
+        android:paddingLeft="20dp"
+        android:textColor="#282D47"
+        android:textSize="25dp" />
 
 </RelativeLayout>

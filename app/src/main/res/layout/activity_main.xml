@@ -8,6 +8,16 @@
     android:background="@color/white">
 
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="89dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="5sp"
+        android:background="#FFFFFF"
+        android:rotationX="11"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/wheel" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -32,7 +42,7 @@
         android:layout_marginTop="500sp"
         android:layout_marginBottom="10dp"
         android:fontFamily="cursive"
-        android:text="  SpeedYou  "
+        android:text="BalanceYou"
         android:textAllCaps="false"
         android:textSize="20dp"/>
     <Button
