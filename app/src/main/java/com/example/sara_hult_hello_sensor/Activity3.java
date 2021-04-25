@@ -85,6 +85,7 @@ public class Activity3 extends AppCompatActivity implements SensorEventListener 
         });
         start();
 
+
         /* Försök med SoundPool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
